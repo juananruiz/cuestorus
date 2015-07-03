@@ -1,0 +1,17 @@
+#config/doctrine/Entity.User.dcm.yml
+Entity\User:
+  type: entity
+  table: user
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+      strategy: AUTO
+    email:
+      type: string
+      length: 255
+    password:
+      type: string
+      length: 512
+  lifecycleCallbacks: {  }
