@@ -28,7 +28,7 @@ class EncuestaControlador {
     {
         $desplazamiento = $request->attributes->get('desplazamiento');
         $limite = $request->attributes->get('limite');
-        $encuestas = $app['repository.encuesta']->listar($limite, $desplazamiento);git
+        $encuestas = $app['repository.encuesta']->listar($limite, $desplazamiento);
         return $app['twig']->render('encuestas.html.twig', array("encuestas" => $encuestas));
     }
 
