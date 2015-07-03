@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Entity
  * @Table(name="ENCUESTA_preguntas_opcion")
  */
-class PreguntaOpcion extends Opcion
+class PreguntaOpcion extends Pregunta
 {
     /**
      * OneToMany(targetEntity="Opcion", mappedBy="pregunta")

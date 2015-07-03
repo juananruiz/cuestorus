@@ -29,6 +29,18 @@ class Encuesta
     private $es_anonima;
 
     /**
+     * @Column(type="text")
+     * @var string
+     */
+    private $texto_inicial;
+
+    /**
+     * @Column(type="text")
+     * @var string
+     */
+    private $texto_final;
+
+    /**
      *
      */
     public function getId()

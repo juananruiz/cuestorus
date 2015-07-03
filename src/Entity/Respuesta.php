@@ -16,7 +16,7 @@ namespace US\RRHH\Girhus\Encuesta\Entity;
  *                  "respuesta_opcion" = "RespuestaOpcion",
  *                  "respuesta_gradiente" = "RespuestaGradiente"})
  */
-class Respuesta
+abstract class Respuesta
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;

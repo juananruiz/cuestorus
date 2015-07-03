@@ -15,7 +15,7 @@ namespace US\RRHH\Girhus\Encuesta\Entity;
  * @DiscriminatorMap({"evaluacion_nominal" = "EvaluacionNominal", 
  *                  "evaluacion_anonima" = "EvaluacionAnonima"})
  */
-class Evaluacion
+abstract class Evaluacion
 {
 
     /** @Id @Column(type="integer") @GeneratedValue * */

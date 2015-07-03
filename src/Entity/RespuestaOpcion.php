@@ -11,7 +11,7 @@ namespace US\RRHH\Girhus\Encuesta\Entity;
  * @Entity
  * @Table(name="ENCUESTA_respuestas_opcion")
  */
-class RespuestaOpcion extends Opcion
+class RespuestaOpcion extends Respuesta
 {
 
 }

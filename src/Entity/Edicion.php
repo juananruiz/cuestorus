@@ -13,6 +13,37 @@ namespace US\RRHH\Girhus\Encuesta\Entity;
 class Edicion
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
-    protected $id;
+    private $id;
+
+    /**
+     * @Column(type="string")
+     */
+    private $codigo;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * @param mixed $codigo
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+    }
+
+
 
 }
