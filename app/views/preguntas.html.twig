@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'preguntas' %}
+
+{% block content %}
+    <div id="main" role="main" class="container">
+        <h2>Lista de preguntas</h2>
+        <ul>
+            {% for pregunta in preguntas %}
+                <li>
+                    {{ pregunta.enunciado|e }}, {{ pregunta.id|e }}, {{ pregunta.orden|e }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'encuestas' %}
+
+{% block content %}
+    <div id="main" role="main" class="container">
+        <h2>Lista de encuestas</h2>
+        <ul>
+            {% for encuesta in encuestas %}
+                <li>
+                    {{ encuesta.nombre|e }}, {{ encuesta.id }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
