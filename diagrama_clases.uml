@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>PHP</ID>
+  <OriginalElement>\US\RRHH\Girhus\Encuesta\Entity\EvaluacionNominal</OriginalElement>
+  <nodes>
+    <node x="169.0" y="833.0">\US\RRHH\Girhus\Encuesta\Entity\Opcion</node>
+    <node x="-576.6666666666666" y="571.3333333333334">\US\RRHH\Girhus\Encuesta\Entity\Encuesta</node>
+    <node x="429.33333333333326" y="230.33333333333348">\US\RRHH\Girhus\Encuesta\Entity\RespuestaTexto</node>
+    <node x="453.83333333333326" y="85.33333333333348">\US\RRHH\Girhus\Encuesta\Entity\Respuesta</node>
+    <node x="-241.66666666666663" y="259.33333333333337">\US\RRHH\Girhus\Encuesta\Entity\EvaluacionNominal</node>
+    <node x="-379.9999999999998" y="400.33333333333337">\US\RRHH\Girhus\Encuesta\Entity\GrupoPregunta</node>
+    <node x="30.66666666666663" y="493.0">\US\RRHH\Girhus\Encuesta\Entity\PreguntaTexto</node>
+    <node x="0.16666666666662877" y="251.66666666666669">\US\RRHH\Girhus\Encuesta\Entity\Pregunta</node>
+    <node x="622.3333333333333" y="230.33333333333348">\US\RRHH\Girhus\Encuesta\Entity\RespuestaGradiente</node>
+    <node x="-598.6666666666665" y="103.00000000000011">\US\RRHH\Girhus\Encuesta\Entity\Participante</node>
+    <node x="173.66666666666663" y="471.0">\US\RRHH\Girhus\Encuesta\Entity\PreguntaGradiente</node>
+    <node x="-324.4166666666666" y="92.33333333333334">\US\RRHH\Girhus\Encuesta\Entity\Evaluacion</node>
+    <node x="-569.6666666666666" y="294.66666666666674">\US\RRHH\Girhus\Encuesta\Entity\Edicion</node>
+    <node x="-138.33333333333337" y="471.0">\US\RRHH\Girhus\Encuesta\Entity\PreguntaOpcion</node>
+    <node x="268.33333333333326" y="241.33333333333348">\US\RRHH\Girhus\Encuesta\Entity\RespuestaOpcion</node>
+    <node x="-416.6666666666666" y="270.3333333333333">\US\RRHH\Girhus\Encuesta\Entity\EvaluacionAnonima</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="\US\RRHH\Girhus\Encuesta\Entity\RespuestaOpcion" target="\US\RRHH\Girhus\Encuesta\Entity\Opcion">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="\US\RRHH\Girhus\Encuesta\Entity\EvaluacionNominal" target="\US\RRHH\Girhus\Encuesta\Entity\Evaluacion">
+      <point x="0.0" y="-25.5" />
+      <point x="-165.66666666666663" y="234.33333333333334" />
+      <point x="-216.41666666666663" y="234.33333333333334" />
+      <point x="36.0" y="58.5" />
+    </edge>
+    <edge source="\US\RRHH\Girhus\Encuesta\Entity\EvaluacionAnonima" target="\US\RRHH\Girhus\Encuesta\Entity\Evaluacion">
+      <point x="0.0" y="-14.5" />
+      <point x="-339.1666666666666" y="234.33333333333334" />
+      <point x="-288.41666666666663" y="234.33333333333334" />
+      <point x="-36.0" y="58.5" />
+    </edge>
+    <edge source="\US\RRHH\Girhus\Encuesta\Entity\PreguntaGradiente" target="\US\RRHH\Girhus\Encuesta\Entity\Pregunta">
+      <point x="0.0" y="-36.5" />
+      <point x="262.66666666666663" y="446.0" />
+      <point x="153.5" y="446.0" />
+      <point x="61.33333333333334" y="80.5" />
+    </edge>
+    <edge source="\US\RRHH\Girhus\Encuesta\Entity\PreguntaTexto" target="\US\RRHH\Girhus\Encuesta\Entity\Pregunta">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="\US\RRHH\Girhus\Encuesta\Entity\RespuestaTexto" target="\US\RRHH\Girhus\Encuesta\Entity\Respuesta">
+      <point x="0.0" y="-25.5" />
+      <point x="7.105427357601002E-15" y="47.5" />
+    </edge>
+    <edge source="\US\RRHH\Girhus\Encuesta\Entity\RespuestaGradiente" target="\US\RRHH\Girhus\Encuesta\Entity\Respuesta">
+      <point x="0.0" y="-25.5" />
+      <point x="700.3333333333333" y="205.33333333333348" />
+      <point x="557.1666666666666" y="205.33333333333348" />
+      <point x="41.33333333333334" y="47.5" />
+    </edge>
+    <edge source="\US\RRHH\Girhus\Encuesta\Entity\PreguntaOpcion" target="\US\RRHH\Girhus\Encuesta\Entity\Opcion">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6000000000000001" x="166.4999999999999" y="473.66666666666663" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
