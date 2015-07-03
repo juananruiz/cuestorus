@@ -8,6 +8,7 @@ var/
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
+.htaccess
 
 # PHP Storm (Juanan)
 .idea/*
