@@ -24,8 +24,10 @@ $app->get('/', function () use ($app) {
 
 // Llamando a un método dentro de una clase
 // Silex pasa automáticamente $app, $request y el $id
-$app->get('/preguntas', 'US\RRHH\Girhus\Encuesta\Controller\PreguntaControlador::listarAccion');
-$app->get('/encuestas/{limite}/{desplazamiento}', 'US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador::listarAccion');
+$app->get('/preguntas', 'US\RRHH\Girhus\Encuesta\Controller\PreguntaControlador::listarAccion')
+    ->bind('preguntas');
+$app->get('/encuestas/{limite}/{desplazamiento}', 'US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador::listarAccion')
+    ->bind('encuestas');
 $app->get('/encuesta/{id}', 'US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador::mostrarAccion');
 
 

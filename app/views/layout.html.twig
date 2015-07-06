@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title '' %} - My Silex-Skeleton Application</title>
+        <meta charset="utf-8">
+        <title>{% block title '' %} - Cuestorus</title>
 
+        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('css/bootstrap-theme.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript">
@@ -18,6 +22,27 @@
         </script>
     </head>
     <body>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('homepage') }}"><i
+                                class="icon-home"></i>  {{ 'Inicio' }}</a></li>
+                <li {% if 'preguntas' == active %}class="active"{% endif %}><a href="{{ path('preguntas') }}"><i
+                                class="icon-dashboard"></i> Preguntas</a></li>
+            </ul>
+            <ul class="nav pull-right">
+                <li {% if 'me' == active %}class="active"{% endif %}><a href="{{ path('me') }}"><i
+                                class="icon-user"></i> Mi perfil</a></li>
+                <li><a href="{{ path('logout') }}">{{ 'Logout' }}</a></li>
+                <li {% if 'login' == active %}class="active"{% endif %}><a href="{{ path('login') }}"><i
+                                class="icon-user"></i> {{ 'Login' }}</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class="nuevo"></p>
         {% block content %}{% endblock %}
     </body>
+    <script src="{{ asset('/js/jquery.js') }}"></script>
+    <script src="{{ asset('/js/main.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
 </html>
