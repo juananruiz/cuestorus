@@ -30,4 +30,10 @@ class EncuestaRepositorioDoctrine extends EntityRepository
         $criterio = array();
         return $this->findBy($criterio, $ordenarPor, $limite, $desplazamiento);
     }
+
+    public function listarActivas($limite = 5, $desplazamiento = 0, $ordenarPor = array())
+    {
+        $criterio = array();
+        return $this->findBy($criterio, $ordenarPor, $limite, $desplazamiento);
+    }
 }
