@@ -8,7 +8,7 @@
 
 namespace US\RRHH\Girhus\Encuesta\Repository;
 
-use US\RRHH\Girhus\Encuesta\Entity\InterfazEntidad;
+use US\RRHH\Girhus\Encuesta\Entity\Encuesta;
 use Doctrine\ORM\EntityManager;
 
 /**
@@ -16,7 +16,6 @@ use Doctrine\ORM\EntityManager;
  * @package US\RRHH\Girhus\Encuesta\Repository
  */
 class EncuestaRepositorio implements InterfazRepositorio{
-
 
     /**
      * @param EntityManager $entityManager
@@ -29,9 +28,9 @@ class EncuestaRepositorio implements InterfazRepositorio{
     /**
      * Guarda la entidad en la BD.
      *
-     * @param InterfazEntidad $entidad
+     * @param Encuesta $encuesta
      */
-    public function guardar(InterfazEntidad $entidad)
+    public function guardar($encuesta)
     {
         // TODO: Implement guardar() method.
     }

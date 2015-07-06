@@ -28,7 +28,11 @@ class EncuestaControlador {
     {
         $desplazamiento = $request->attributes->get('desplazamiento');
         $limite = $request->attributes->get('limite');
-        $encuestas = $app['repository.encuesta']->listar($limite, $desplazamiento);
+        // Método 1
+        // $encuestas = $app['repository.encuesta']->listar($limite, $desplazamiento);
+        // Método 2
+        $encuestas = $app['repository.encuesta_doctrine']->listar($limite, $desplazamiento);
+
         return $app['twig']->render('encuestas.html.twig', array("encuestas" => $encuestas));
     }
 

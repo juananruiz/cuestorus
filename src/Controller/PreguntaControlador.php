@@ -40,7 +40,11 @@ class PreguntaControlador
      */
     public function crear(Request $request, Application $app)
     {
-        $pregunta = new PreguntaGradiente();
+
+        $tipoPregunta = $request->get('tipo_pregunta');
+        $pregunta = new $tipoPregunta($parametros);
+
+
         $form = $app['form.factory']->create(new PreguntaType(), $pregunta);
 
         if ($request->isMethod('POST')) {

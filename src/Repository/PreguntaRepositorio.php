@@ -9,12 +9,15 @@
 namespace US\RRHH\Girhus\Encuesta\Repository;
 
 use Doctrine\ORM\EntityManager;
-use US\RRHH\Girhus\Encuesta\Entity\InterfazEntidad;
+use US\RRHH\Girhus\Encuesta\Entity\Pregunta;
 
 class PreguntaRepositorio implements InterfazRepositorio{
 
     private $entityManager;
 
+    /**
+     * @param EntityManager $entityManager
+     */
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -23,9 +26,9 @@ class PreguntaRepositorio implements InterfazRepositorio{
     /**
      * Guarda la entidad en la BD.
      *
-     * @param InterfazEntidad $pregunta
+     * @param Pregunta $pregunta
      */
-    public function guardar(InterfazEntidad $pregunta)
+    public function guardar($pregunta)
     {
         $this->entityManager->persist($pregunta);
         $this->entityManager->flush();

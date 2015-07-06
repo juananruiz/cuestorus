@@ -54,13 +54,12 @@ abstract class Pregunta implements InterfazEntidad
      */
     protected $fecha_baja;
 
-    public function __construct($grupo_pregunta, $orden, $enunciado, \DateTime $fecha_alta, \DateTime $fecha_baja)
+    public function __construct($grupo_pregunta, $orden, $enunciado)
     {
         $this->grupo_pregunta = $grupo_pregunta;
         $this->orden = $orden;
         $this->enunciado = $enunciado;
-        $this->fecha_alta = $fecha_alta;
-        $this->fecha_baja = $fecha_baja;
+        $this->fecha_alta = date('Y-m-d H:i:s');
     }
 
     public function getId()

@@ -8,7 +8,6 @@
  */
 
 namespace US\RRHH\Girhus\Encuesta\Repository;
-use US\RRHH\Girhus\Encuesta\Entity\InterfazEntidad;
 
 /**
  * Interfaz para Repositorios.
@@ -24,9 +23,9 @@ interface InterfazRepositorio
     /**
      * Guarda la entidad en la BD.
      *
-     * @param InterfazEntidad $entidad
+     * @param object $entidad
      */
-    public function guardar(InterfazEntidad $entidad);
+    public function guardar($entidad);
 
     /**
      * Borra la entidad.

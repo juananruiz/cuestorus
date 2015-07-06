@@ -15,6 +15,7 @@ use US\RRHH\Girhus\Encuesta\Repository\RespuestaRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\PreguntaRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\EvaluacionRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\EncuestaRepositorio;
+use US\RRHH\Girhus\Encuesta\Repository\EncuestaRepositorioDoctrine;
 
 $app = new Application();
 $app->register(new RoutingServiceProvider());
@@ -51,6 +52,11 @@ $app['repository.evaluacion'] = function ($app) {
 
 $app['repository.encuesta'] = function ($app) {
     return new EncuestaRepositorio($app['orm.em']);
+};
+
+// Esto sería un repositorio nativo de Doctrine
+$app['repository.encuesta_doctrine'] = function ($app) {
+    return new EncuestaRepositorioDoctrine($app['orm.em'], $app['orm.em']->getClassMetadata('US\RRHH\Girhus\Encuesta\Entity\Encuesta'));
 };
 
 $app['twig.path'] = array(__DIR__.'/../app/views');

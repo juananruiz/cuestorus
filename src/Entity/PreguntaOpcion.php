@@ -26,6 +26,14 @@ class PreguntaOpcion extends Pregunta
      */
     private $max_selecciones;
 
+
+    function __construct($grupo_pregunta, $orden, $enunciado, $max_selecciones)
+    {
+        parent::__construct($grupo_pregunta, $orden, $enunciado);
+        $this->max_selecciones = $max_selecciones;
+    }
+
+
     public function agregaOpcion(Opcion $opcion)
     {
         $this->opciones[] = $opcion;
