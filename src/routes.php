@@ -29,8 +29,11 @@ $app->get('/preguntas', 'US\RRHH\Girhus\Encuesta\Controller\PreguntaControlador:
 $app->get('/encuestas/{limite}/{desplazamiento}', 'US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador::listarAccion')
     ->bind('encuestas');
 $app->get('/encuesta/{id}', 'US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador::mostrarAccion');
-$app->get('/participantes/{limite}/{desplazamiento}', 'controller.participante:listarAccion');
-$app->get('/participante_grabar', 'controller.participante:crearAccion');
+$app->get('/participantes/{limite}/{desplazamiento}', 'controller.participante:listarAccion')
+    ->value('limite', '10')
+    ->value('desplazamiento', '0');
+$app->get('/participante_nuevo', 'controller.participante:nuevoAccion');
+$app->post('/participante_grabar', 'controller.participante:crearAccion');
 
 
 //PRUEBAS Y EJEMPLOS //

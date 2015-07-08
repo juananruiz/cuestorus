@@ -9,6 +9,7 @@
 
 namespace US\RRHH\Girhus\Encuesta\Controller;
 
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use US\RRHH\Girhus\Encuesta\Entity\Participante;
 use US\RRHH\Girhus\Encuesta\Repository\ParticipanteRepositorioDoctrine;
@@ -33,17 +34,19 @@ class ParticipanteControlador
         $this->repositorioParticipantes = $repositorioParticipantes;
     }
 
-
     /**
+     * function listarAccion
+     * @param Application $app
      * @param $limite
      * @param $desplazamiento
      * @return array
      */
-    public function listarAccion($limite, $desplazamiento)
+    public function listarAccion(Application $app, $limite, $desplazamiento)
     {
         $criterio = array();
         $ordenarPor = array();
-        return $this->repositorioParticipantes->listar($criterio, $ordenarPor, $limite, $desplazamiento);
+        $listaParticipantes = $this->repositorioParticipantes->listar($criterio, $ordenarPor, $limite, $desplazamiento);
+        return $app['twig']->render('participantes.html.twig', array("participantes" => $listaParticipantes));
     }
 
     /**
@@ -65,5 +68,10 @@ class ParticipanteControlador
         );
         $participante = new Participante($parametros);
         $this->repositorioParticipantes->guardar($participante);
+    }
+
+    public function nuevoAccion(Application $app)
+    {
+        return $app['twig']->render('participante_formulario.html.twig');
     }
 }

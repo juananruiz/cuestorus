@@ -9,40 +9,39 @@
  */
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Column;
+
+use Doctrine\ORM\Mapping AS ORM;
 
 /**
- * @Entity
- * @Table(name="ENCUESTA_encuestas")
+ * @ORM\Entity
+ * @ORM\Table(name="ENCUESTA_encuestas")
+ * @US\RRHH\Girhus\Encuesta\Entity\Annotations\Foobarable
  */
 class Encuesta
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
+    /** @ORM\Id @Column(type="integer") @@ORM\GeneratedValue * */
     private $id;
 
-    /** 
-     * @Column(type="string")
+    /**
+     * @ORM\Column(type="string")
      * @var string
      */
     private $nombre;
 
     /**
-     * @Column(type="boolean")
+     * @ORM\Column(type="boolean")
      * @var boolean
      */
     private $es_anonima;
 
     /**
-     * @Column(type="text")
+     * @ORM\Column(type="text")
      * @var string
      */
     private $texto_inicial;
 
     /**
-     * @Column(type="text")
+     * @ORM\Column(type="text")
      * @var string
      */
     private $texto_final;
@@ -68,6 +67,38 @@ class Encuesta
     public function getEsAnonima()
     {
         return $this->es_anonima;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextoInicial()
+    {
+        return $this->texto_inicial;
+    }
+
+    /**
+     * @param string $texto_inicial
+     */
+    public function setTextoInicial($texto_inicial)
+    {
+        $this->texto_inicial = $texto_inicial;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextoFinal()
+    {
+        return $this->texto_final;
+    }
+
+    /**
+     * @param string $texto_final
+     */
+    public function setTextoFinal($texto_final)
+    {
+        $this->texto_final = $texto_final;
     }
 
 }
