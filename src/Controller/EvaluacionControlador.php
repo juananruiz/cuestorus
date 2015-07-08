@@ -13,11 +13,13 @@ use US\RRHH\Girhus\Encuesta\Entity\Evaluacion;
 
 class EvaluacionControlador {
 
-    public function comenzarAction(Encuesta $encuesta){
+    public function comenzarAccion(Encuesta $encuesta)
+    {
 
     }
 
-    public function finalizarAction(Evaluacion $evaluacion){
+    public function finalizarAccion(Evaluacion $evaluacion)
+    {
 
     }
 

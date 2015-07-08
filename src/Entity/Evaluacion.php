@@ -1,8 +1,11 @@
 <?php
 
 /**
- * Clase Evaluacion.php
- * src/Evaluacion.php
+ * Proyecto Girhus/Encuesta
+ * src/Entity/Evaluacion.php
+ * Desarrollado por juananruiz
+ * Creado el 1/6/15 - 18:51
+ * Hecho con PhpStorm.
  */
 
 namespace US\RRHH\Girhus\Encuesta\Entity;

@@ -829,12 +829,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "b028c59d5fa1b70e615beae2c4f4ba5e07f3b8ad"
+                "reference": "35f73c1f4e8e28169bda39e37e149db49e9efb59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/b028c59d5fa1b70e615beae2c4f4ba5e07f3b8ad",
-                "reference": "b028c59d5fa1b70e615beae2c4f4ba5e07f3b8ad",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/35f73c1f4e8e28169bda39e37e149db49e9efb59",
+                "reference": "35f73c1f4e8e28169bda39e37e149db49e9efb59",
                 "shasum": ""
             },
             "require": {
@@ -908,7 +908,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2015-07-01 23:06:22"
+            "time": "2015-07-07 07:27:25"
         },
         {
             "name": "silex/web-profiler",

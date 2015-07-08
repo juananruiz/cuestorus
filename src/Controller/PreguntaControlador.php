@@ -36,12 +36,19 @@ class PreguntaControlador
 
     /**
      * Crea una nueva pregunta a partir de los datos del formulario
-     * @params Request $request, Application $app, GrupoPregunta $grupo_pregunta
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
      */
-    public function crear(Request $request, Application $app)
+    public function crearAccion(Request $request, Application $app)
     {
 
         $tipoPregunta = $request->get('tipo_pregunta');
+        $parametros = array(
+            'enunciado' => $request->get('enunciado'),
+            'id_grupo' => $request->get('id_grupo'),
+            'orden' => $request->get('orden'),
+        );
         $pregunta = new $tipoPregunta($parametros);
 
 
@@ -65,5 +72,31 @@ class PreguntaControlador
         );
         return $app['twig']->render('form.html.twig', $data);
 
+    }
+
+    // TODO: tengo que aclararme con esto
+    public function agregarAccion(Request $request, Application $app)
+    {
+
+        $pregunta = new PreguntaGradiente($datosPregunta);
+        $form = $app['form.factory']->create(new PreguntaTipo(), $pregunta);
+
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $app['repository.pregunta']->save($pregunta);
+                $message = 'The artist ' . $pregunta->getId() . ' has been saved.';
+                $app['session']->getFlashBag()->add('success', $message);
+                // Redirect to the edit page.
+                $redirect = $app['url_generator']->generate('pregunta_edit', array('pregunta' => $pregunta->getId()));
+                return $app->redirect($redirect);
+            }
+        }
+
+        $data = array(
+            'form' => $form->createView(),
+            'title' => 'Add new artist',
+        );
+        return $app['twig']->render('form.html.twig', $data);
     }
 }

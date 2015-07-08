@@ -33,7 +33,7 @@ class InformeControlador
 
     public function listarAccion()
     {
-
+        $this->repositorioEvaluaciones->listarFinalizadas();
     }
 
     public function mostrarAccion($codigoEdicion)

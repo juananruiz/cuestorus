@@ -16,6 +16,9 @@ use US\RRHH\Girhus\Encuesta\Repository\PreguntaRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\EvaluacionRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\EncuestaRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\EncuestaRepositorioDoctrine;
+use US\RRHH\Girhus\Encuesta\Repository\ParticipanteRepositorioDoctrine;
+use US\RRHH\Girhus\Encuesta\Controller\InformeControlador;
+use US\RRHH\Girhus\Encuesta\Controller\ParticipanteControlador;
 
 $app = new Application();
 $app->register(new RoutingServiceProvider());
@@ -54,9 +57,22 @@ $app['repository.encuesta'] = function ($app) {
     return new EncuestaRepositorio($app['orm.em']);
 };
 
-// Esto sería un repositorio nativo de Doctrine
+// Estos son repositorios nativo de Doctrine
 $app['repository.encuesta_doctrine'] = function ($app) {
     return new EncuestaRepositorioDoctrine($app['orm.em'], $app['orm.em']->getClassMetadata('US\RRHH\Girhus\Encuesta\Entity\Encuesta'));
+};
+
+$app['repository.participante'] = function ($app) {
+    return new ParticipanteRepositorioDoctrine($app['orm.em'], $app['orm.em']->getClassMetadata('US\RRHH\Girhus\Encuesta\Entity\Participante'));
+};
+
+// Registra controladores como servicios
+$app['controller.informe'] = function ($app) {
+    return new InformeControlador($app['repository.evaluacion']);
+};
+
+$app['controller.participante'] = function ($app) {
+    return new ParticipanteControlador($app['repository.participante']);
 };
 
 $app['twig.path'] = array(__DIR__.'/../app/views');

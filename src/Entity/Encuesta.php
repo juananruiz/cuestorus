@@ -1,11 +1,18 @@
 <?php
 
 /**
- * Clase Encuesta.php
+ * Proyecto Girhus/Encuesta
  * src/Entity/Encuesta.php
+ * Desarrollado por juananruiz
+ * Creado el 1/6/15 - 18:51
+ * Hecho con PhpStorm.
  */
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Column;
 
 /**
  * @Entity

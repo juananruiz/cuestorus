@@ -1,8 +1,11 @@
 <?php
 
 /**
- * Clase EvaluacionAnonima
- * Evaluaciones de encuestas anónimas (no se registra la identidad del encuestado
+ * Proyecto Girhus/Encuesta
+ * src/Entity/Edicion.php
+ * Desarrollado por juananruiz
+ * Creado el 1/7/15 - 18:51
+ * Hecho con PhpStorm.
  */
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
@@ -16,16 +19,57 @@ class Participante
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
-    /*
+    /**
      * @Column(type="string")
      * @var string
      */
     protected $nombre;
 
-    /*
+    /**
      * @Column(type="string")
      * @var string
      */
     protected $apellidos;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param string $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * @param string $apellidos
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+    }
+
 }
 

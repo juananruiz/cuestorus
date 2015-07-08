@@ -1,0 +1,23 @@
+{% set active = 'form' %}
+
+{% block content %}
+    <div id="main" role="main" class="container">
+    {% set alertTypeAvaillable = [ 'info', 'success', 'warning', 'error'] %}
+    {% for alert in alertTypeAvaillable %}
+        {% for message in app.session.getFlashBag.get(alert) %}
+            <div class="alert alert-{{ alert }}">
+                <button class="close" data-dismiss="alert">×</button>
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <h1>{{ title }}</h1>
+
+    <form action="participante_grabar" method="post" class="form-horizontal">
+        <input type="text" name="nombre">
+        <input type="text" name="apellidos">
+        <input type="submit" value="Grabar participante">
+    </form>
+
+{% endblock %}
