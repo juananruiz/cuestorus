@@ -46,32 +46,76 @@ class ParticipanteControlador
         $criterio = array();
         $ordenarPor = array();
         $listaParticipantes = $this->repositorioParticipantes->listar($criterio, $ordenarPor, $limite, $desplazamiento);
-        return $app['twig']->render('participantes.html.twig', array("participantes" => $listaParticipantes));
+        return $app['twig']->render('participante/participantes.html.twig', array("participantes" => $listaParticipantes));
     }
 
     /**
-     * @param $id
+     * @param Application $app
+     * @param $id Identificador del participante
      */
-    public function mostrarAccion($id)
+    public function mostrarAccion(Application $app, $id)
     {
+        $participante = $this->repositorioParticipantes->find($id);
+        return $app['twig']->render('participante/participante.html.twig', array("participante" => $participante));
 
     }
 
     /**
      * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function crearAccion(Request $request)
+    public function grabarAccion(Request $request, Application $app)
     {
-        $parametros = array(
-            'nombre' => $request->get('nombre'),
-            'apellidos' => $request->get('apellidos')
-        );
-        $participante = new Participante($parametros);
+        var_dump($request->get('id'));
+        if ($id = $request->get('id')) {
+            $participante = $this->repositorioParticipantes->cargar($id);
+            $participante->setNombre = $request->get('nombre');
+            $participante->setApellidos = $request->get('apellidos');
+        } else {
+            $datos = array(
+                'nombre' => $request->get('nombre'),
+                'apellidos' => $request->get('apellidos')
+            );
+            $participante = new Participante($datos);
+        }
         $this->repositorioParticipantes->guardar($participante);
+        $redirect = $app['url_generator']->generate('participantes');
+        return $app->redirect($redirect);
     }
 
-    public function nuevoAccion(Application $app)
+    /**
+     * @param Application $app
+     * @return mixed
+     */
+    public function crearAccion(Application $app)
     {
-        return $app['twig']->render('participante_formulario.html.twig');
+        return $app['twig']->render('participante/participante_crear.html.twig');
+    }
+
+    /**
+     * @param Application $app
+     * @param $id Identificador del participante
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function editarAccion(Application $app, $id)
+    {
+        $participante = $this->repositorioParticipantes->find($id);
+        return $app['twig']->render('participante/participante_editar.html.twig', array("participante" => $participante));
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function borrarAccion(Request $request, Application $app)
+    {
+        $id = $request->get('id');
+        /** @var Participante $participante */
+        $participante = $this->repositorioParticipantes->cargar($id);
+        $this->repositorioParticipantes->borrar($participante);
+        $redirect = $app['url_generator']->generate('participantes');
+        return $app->redirect($redirect);
     }
 }

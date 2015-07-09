@@ -32,6 +32,15 @@ class Participante
     protected $apellidos;
 
     /**
+     * @param array $datos
+     */
+    function __construct($datos)
+    {
+        $this->nombre = $datos['nombre'];
+        $this->apellidos = $datos['apellidos'];
+    }
+
+    /**
      * @return int
      */
     public function getId()

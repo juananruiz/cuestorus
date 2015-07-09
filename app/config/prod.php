@@ -4,6 +4,9 @@
 
 date_default_timezone_set('Europe/Madrid');
 
+// enable the debug mode
+$app['debug'] = true;
+
 // DoctrineServiceProvider opciones para la BD
 $app['db.options'] = array(
     'driver' => 'pdo_mysql',

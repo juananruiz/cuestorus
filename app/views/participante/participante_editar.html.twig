@@ -1,0 +1,15 @@
+{% set title = 'Editar participante' %}
+
+{% block content %}
+    <div id="main" role="main" class="container">
+
+    <h1>{{ title }}</h1>
+
+    <form action="/participante/grabar" method="post" class="form">
+        <input type="hidden" name="id" value="{{ participante.id }}">
+        <input type="text" name="nombre" value="{{ participante.nombre }}">
+        <input type="text" name="apellidos" value="{{ participante.apellidos }}">
+        <input type="submit" value="Guardar cambios">
+    </form>
+
+{% endblock %}

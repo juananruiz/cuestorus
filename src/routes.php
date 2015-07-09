@@ -31,12 +31,15 @@ $app->get('/encuestas/{limite}/{desplazamiento}', 'US\RRHH\Girhus\Encuesta\Contr
 $app->get('/encuesta/{id}', 'US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador::mostrarAccion');
 $app->get('/participantes/{limite}/{desplazamiento}', 'controller.participante:listarAccion')
     ->value('limite', '10')
-    ->value('desplazamiento', '0');
-$app->get('/participante_nuevo', 'controller.participante:nuevoAccion');
-$app->post('/participante_grabar', 'controller.participante:crearAccion');
+    ->value('desplazamiento', '0')
+    ->bind('participantes');
+$app->get('/participante/crear', 'controller.participante:crearAccion');
+$app->post('/participante/grabar', 'controller.participante:grabarAccion');
+$app->get('/participante/{id}', 'controller.participante:mostrarAccion');
+$app->get('/participante/editar/{id}', 'controller.participante:editarAccion');
+$app->get('/participante/borrar/{id}', 'controller.participante:borrarAccion');
 
-
-//PRUEBAS Y EJEMPLOS //
+// PRUEBAS Y EJEMPLOS //
 
 $app->get('/request', function () use ($app) {
     return print_r($app['orm.ems']);

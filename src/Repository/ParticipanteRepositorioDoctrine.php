@@ -56,4 +56,10 @@ class ParticipanteRepositorioDoctrine extends EntityRepository
     {
         return $this->find($id);
     }
+
+    public function borrar(Participante $participante)
+    {
+        $this->getEntityManager()->remove($participante);
+        $this->getEntityManager()->flush();
+    }
 }
