@@ -13,6 +13,18 @@ use Doctrine\ORM\EntityRepository;
 class EncuestaRepositorioDoctrine extends EntityRepository
 {
 
+
+    /**
+     * Devuelve un objeto Encuesta
+     *
+     * @param $id
+     * @return null|object
+     */
+    public function cargar($id)
+    {
+        return $this->find($id);
+    }
+
     /**
      * Devuelve una colección de entidades
      *

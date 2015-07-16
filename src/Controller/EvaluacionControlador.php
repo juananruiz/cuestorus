@@ -8,15 +8,51 @@
 
 namespace US\RRHH\Girhus\Encuesta\Controller;
 
-use US\RRHH\Girhus\Encuesta\Entity\Encuesta;
+use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
+use US\RRHH\Girhus\Encuesta\Repository\EncuestaRepositorioDoctrine;
 use US\RRHH\Girhus\Encuesta\Entity\Evaluacion;
 
 class EvaluacionControlador {
 
-    public function comenzarAccion(Encuesta $encuesta)
+    /**
+     * @var EncuestaRepositorioDoctrine
+     */
+    protected $repositorioParticipantes;
+
+    /**
+     * @param EncuestaRepositorioDoctrine $repositorioEncuestas
+     */
+    function __construct(EncuestaRepositorioDoctrine $repositorioEncuestas)
+    {
+        $this->repositorioEncuestas = $repositorioEncuestas;
+    }
+
+    /**
+     * @param Application $app
+     * @param Request $request
+     * @return Response Vista que muestra el inicio de la encuesta
+     */
+    public function comenzarAccion(Application $app, Request $request)
+    {
+        $id_encuesta = $request['id_encuesta'];
+        $id_edicion = $request['id_edicion'];
+        $encuesta = $this->repositorioEncuesta->cargar($id_encuesta);
+        $em = $this->repositorioEncuesta->getEntityManager();
+        $edicion = $em->find('edicion', $id_edicion);
+        return $app['twig']->render('encuesta/encuesta_inicio.html.twig',
+            array("encuesta" => $encuesta),
+            array("edicion" => $edicion));
+    }
+
+    /**
+     * @param int $pagina Página de la encuesta que hay que mostrar
+     */
+    public function mostrarPaginaAccion($pagina)
     {
 
     }
+
 
     public function finalizarAccion(Evaluacion $evaluacion)
     {

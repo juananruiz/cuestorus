@@ -67,11 +67,12 @@ class ParticipanteControlador
      */
     public function grabarAccion(Request $request, Application $app)
     {
-        var_dump($request->get('id'));
+
         if ($id = $request->get('id')) {
             $participante = $this->repositorioParticipantes->cargar($id);
-            $participante->setNombre = $request->get('nombre');
-            $participante->setApellidos = $request->get('apellidos');
+            $participante->setNombre($request->get('nombre'));
+            $participante->setApellidos($request->get('apellidos'));
+
         } else {
             $datos = array(
                 'nombre' => $request->get('nombre'),
