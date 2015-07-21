@@ -10,22 +10,23 @@ namespace US\RRHH\Girhus\Encuesta\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use US\RRHH\Girhus\Encuesta\Repository\EncuestaRepositorioDoctrine;
+use US\RRHH\Girhus\Encuesta\Repository\EncuestaRepositorio;
 use US\RRHH\Girhus\Encuesta\Entity\Evaluacion;
 
 class EvaluacionControlador {
 
     /**
-     * @var EncuestaRepositorioDoctrine
+     * @var EvaluacionRepositorioDoctrine
      */
-    protected $repositorioParticipantes;
+    protected $repositorioEvaluaciones;
+
 
     /**
-     * @param EncuestaRepositorioDoctrine $repositorioEncuestas
+     * @param EvaluacionRepositorioDoctrine $repositorioEvaluaciones
      */
-    function __construct(EncuestaRepositorioDoctrine $repositorioEncuestas)
+    function __construct(EvaluacionRepositorioDoctrine $repositorioEvaluaciones)
     {
-        $this->repositorioEncuestas = $repositorioEncuestas;
+        $this->repositorioEvaluaciones = $repositorioEvaluaciones;
     }
 
     /**

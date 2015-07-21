@@ -2,88 +2,50 @@
 /**
  * Created by PhpStorm.
  * User: juananruiz
- * Date: 3/7/15
- * Time: 19:16
+ * Date: 6/7/15
+ * Time: 19:04
  */
 
 namespace US\RRHH\Girhus\Encuesta\Repository;
 
-use US\RRHH\Girhus\Encuesta\Entity\Encuesta;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * Class EncuestaRepositorio
- * @package US\RRHH\Girhus\Encuesta\Repository
- */
-class EncuestaRepositorio implements InterfazRepositorio{
+class EncuestaRepositorio extends EntityRepository
+{
+
 
     /**
-     * @param EntityManager $entityManager
-     */
-    public function __construct(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
-    /**
-     * Guarda la entidad en la BD.
+     * Devuelve un objeto Encuesta
      *
-     * @param Encuesta $encuesta
-     */
-    public function guardar($encuesta)
-    {
-        // TODO: Implement guardar() method.
-    }
-
-    /**
-     * Borra la entidad.
-     *
-     * @param integer $id
-     */
-    public function borrar($id)
-    {
-        // TODO: Implement borrar() method.
-    }
-
-    /**
-     * Devuelve el total de entidades.
-     *
-     * @return integer Número total de entidades.
-     */
-    public function contar()
-    {
-        // TODO: Implement contar() method.
-    }
-
-    /**
-     * Devuelve la entidad cuya id se ha proporcionado.
-     *
-     * @param integer $id
-     *
-     * @return object|false Un objeto entidad si existe y si no, falso.
+     * @param $id
+     * @return null|object
      */
     public function cargar($id)
     {
-        $encuesta = $this->entityManager->getRepository('US\RRHH\Girhus\Encuesta\Entity\Encuesta')->find($id);
-        return $encuesta ? $encuesta : FALSE;
+        return $this->find($id);
     }
 
     /**
-     * Returns a collection of entities.
+     * Devuelve una colección de entidades
      *
      * @param integer $limite
      *   Número de entidades a devolver.
      * @param integer $desplazamiento
-     *   Número de entidades que hay que saltarse desde el principio (página)
+     *   Número de entidades que hay que saltarse desde el principio (paginación)
      * @param array $ordenarPor
-     *   Optionally, the order by info, in the $column => $direction format.
+     *   Opcional, campo y dirección par ordenar:  $campo => $dirección.
      *
-     * @return array Colección de objetos de tipo entidad.
+     * @return array Colección de objetos de tipo encuesta
      */
-    public function listar($limite = 5, $desplazamiento = 0, $ordenarPor = array())
+    public function listar($limite = 10, $desplazamiento = 0, $ordenarPor = array())
     {
-        return $this->entityManager->getRepository('US\RRHH\Girhus\Encuesta\Entity\Encuesta')->findAll();
+        $criterio = array();
+        return $this->findBy($criterio, $ordenarPor, $limite, $desplazamiento);
     }
 
-
+    public function listarActivas($limite = 5, $desplazamiento = 0, $ordenarPor = array())
+    {
+        $criterio = array();
+        return $this->findBy($criterio, $ordenarPor, $limite, $desplazamiento);
+    }
 }

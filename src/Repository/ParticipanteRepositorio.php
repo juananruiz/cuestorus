@@ -1,7 +1,7 @@
 <?php
 /**
  * Proyecto Girhus/Encuestas
- * ParticipanteRepositorioDoctrine.php
+ * ParticipanteRepositorio.php
  * Desarrollado por juananruiz
  * Creado el 7/7/15 - 19:05
  * Hecho con PhpStorm.
@@ -13,15 +13,15 @@ use US\RRHH\Girhus\Encuesta\Entity\Participante;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Class ParticipanteRepositorioDoctrine
+ * Class ParticipanteRepositorio
  *
- * "The Repository pattern just means putting a façade over your persistence
- * system so that you can shield the rest of your application code from having
- * to know how persistence works."
+ * Hereda de la clase EntityRepository de Doctrine para tener cierta funcionalidad básica
+ * y poder implementar además métodos específicos de cada entidad basados en la lógica de
+ * nuestra aplicación
  *
  * @package US\RRHH\Girhus\Encuesta\Repository
  */
-class ParticipanteRepositorioDoctrine extends EntityRepository
+class ParticipanteRepositorio extends EntityRepository
 {
 
     /**

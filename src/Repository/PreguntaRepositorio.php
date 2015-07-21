@@ -8,81 +8,22 @@
 
 namespace US\RRHH\Girhus\Encuesta\Repository;
 
-use Doctrine\ORM\EntityManager;
-use US\RRHH\Girhus\Encuesta\Entity\Pregunta;
+use Doctrine\ORM\EntityRepository;
 
-class PreguntaRepositorio implements InterfazRepositorio{
-
-    private $entityManager;
-
+class PreguntaRepositorio extends EntityRepository
+{
     /**
-     * @param EntityManager $entityManager
-     */
-    public function __construct(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
-    /**
-     * Guarda la entidad en la BD.
-     *
-     * @param Pregunta $pregunta
-     */
-    public function guardar($pregunta)
-    {
-        $this->entityManager->persist($pregunta);
-        $this->entityManager->flush();
-    }
-
-    /**
-     * Borra la entidad.
-     *
-     * @param integer $id
-     */
-    public function borrar($id)
-    {
-        $this->entityManager->remove($pregunta);
-        $this->entityManager->flush();
-    }
-
-    /**
-     * Devuelve el total de entidades.
-     *
-     * @return integer Número total de entidades.
-     */
-    public function contar()
-    {
-        // TODO: Implement contar() method.
-    }
-
-    /**
-     * Devuelve la entidad cuya id se ha proporcionado.
-     *
-     * @param integer $id
-     *
-     * @return object|false Un objeto entidad si existe y si no, falso.
-     */
-    public function cargar($id)
-    {
-        // TODO: Implement cargar() method.
-    }
-
-    /**
-     * Returns a collection of entities.
-     *
-     * @param integer $limite
-     *   Número de entidades a devolver.
-     * @param integer $desplazamiento
-     *   Número de entidades que hay que saltarse desde el principio (página)
+     * @param array $criterio
      * @param array $ordenarPor
-     *   Optionally, the order by info, in the $column => $direction format.
-     *
-     * @return array Colección de objetos de tipo entidad.
+     * @param int $limite
+     *      Número de participantes a devolver
+     * @param int $desplazamiento
+     *      Desplazamiento para paginación
+     * @return array Colección de participantes
      */
-    public function listar($limite, $desplazamiento = 0, $ordenarPor = array())
+    public function listar($criterio, $ordenarPor, $limite = 10, $desplazamiento = 0)
     {
-        return $this->entityManager->getRepository('US\RRHH\Girhus\Encuesta\Entity\Pregunta')->findAll();
+        return $this->findBy($criterio, $ordenarPor, $limite, $desplazamiento);
     }
-
 
 }

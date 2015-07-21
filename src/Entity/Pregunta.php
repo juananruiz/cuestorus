@@ -17,7 +17,7 @@ namespace US\RRHH\Girhus\Encuesta\Entity;
  *                  "pregunta_gradiente" = "PreguntaGradiente"
  *                  })
  */
-abstract class Pregunta implements InterfazEntidad
+abstract class Pregunta
 {
     /**
      * @Id @Column(type="integer") @GeneratedValue 

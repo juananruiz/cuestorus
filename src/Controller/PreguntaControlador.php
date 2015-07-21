@@ -10,7 +10,7 @@ namespace US\RRHH\Girhus\Encuesta\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use US\RRHH\Girhus\Encuesta\Entity\PreguntaGradiente;
+use US\RRHH\Girhus\Encuesta\Repository\PreguntaRepositorio;
 
 
 /**
@@ -23,26 +23,70 @@ use US\RRHH\Girhus\Encuesta\Entity\PreguntaGradiente;
 class PreguntaControlador
 {
     /**
+     * @var PreguntaRepositorio $repositorioPreguntas
+     */
+    protected $repositorioPreguntas;
+
+    /**
+     * @param PreguntaRepositorio $repositorioPreguntas
+     */
+    function __construct($repositorioPreguntas)
+    {
+        $this->repositorioPreguntas = $repositorioPreguntas;
+    }
+
+    /**
      * Devuelve un listado de preguntas
-     * @param Request $request
      * @param Application $app
+     * @param int $limite
+     * @param int $desplazamiento
      * @return mixed
      */
-    public function listarAccion(Request $request, Application $app)
+    public function listarAccion(Application $app, $limite, $desplazamiento)
     {
-        $preguntas = $app['repository.pregunta']->listar(3);
-        return $app['twig']->render('preguntas.html.twig', array("preguntas" => $preguntas));
+        $criterio = array();
+        $ordenarPor = array();
+        $listaPreguntas = $this->repositorioPreguntas->listar($criterio, $ordenarPor, $limite, $desplazamiento);
+        return $app['twig']->render('pregunta/preguntas.html.twig', array("preguntas" => $listaPreguntas));
     }
 
     /**
      * Crea una nueva pregunta a partir de los datos del formulario
-     * @param Request $request
      * @param Application $app
      * @return mixed
      */
-    public function crearAccion(Request $request, Application $app)
+    public function crearAccion(Application $app)
+    {
+        return $app['twig']->render('pregunta/pregunta_crear.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function mostrarAccion(Request $request, Application $app)
     {
 
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function editarAccion(Request $request, Application $app)
+    {
+
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function grabarAccion(Request $request, Application $app)
+    {
         $tipoPregunta = $request->get('tipo_pregunta');
         $parametros = array(
             'enunciado' => $request->get('enunciado'),
@@ -50,53 +94,5 @@ class PreguntaControlador
             'orden' => $request->get('orden'),
         );
         $pregunta = new $tipoPregunta($parametros);
-
-
-        $form = $app['form.factory']->create(new PreguntaType(), $pregunta);
-
-        if ($request->isMethod('POST')) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $app['repository.pregunta']->save($pregunta);
-                $message = 'La pregunta ' . $pregunta->getName() . ' se ha creado.';
-                $app['session']->getFlashBag()->add('success', $message);
-                // Redirect to the edit page.
-                $redirect = $app['url_generator']->generate('admin$pregunta_edit', array('pregunta' => $pregunta->getId()));
-                return $app->redirect($redirect);
-            }
-        }
-
-        $data = array(
-            'form' => $form->createView(),
-            'title' => 'Add new pregunta',
-        );
-        return $app['twig']->render('form.html.twig', $data);
-
-    }
-
-    // TODO: tengo que aclararme con esto
-    public function agregarAccion(Request $request, Application $app)
-    {
-
-        $pregunta = new PreguntaGradiente($datosPregunta);
-        $form = $app['form.factory']->create(new PreguntaTipo(), $pregunta);
-
-        if ($request->isMethod('POST')) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $app['repository.pregunta']->save($pregunta);
-                $message = 'The artist ' . $pregunta->getId() . ' has been saved.';
-                $app['session']->getFlashBag()->add('success', $message);
-                // Redirect to the edit page.
-                $redirect = $app['url_generator']->generate('pregunta_edit', array('pregunta' => $pregunta->getId()));
-                return $app->redirect($redirect);
-            }
-        }
-
-        $data = array(
-            'form' => $form->createView(),
-            'title' => 'Add new artist',
-        );
-        return $app['twig']->render('form.html.twig', $data);
     }
 }

@@ -12,7 +12,7 @@ namespace US\RRHH\Girhus\Encuesta\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use US\RRHH\Girhus\Encuesta\Entity\Participante;
-use US\RRHH\Girhus\Encuesta\Repository\ParticipanteRepositorioDoctrine;
+use US\RRHH\Girhus\Encuesta\Repository\ParticipanteRepositorio;
 
 /**
  * Class ParticipanteControlador
@@ -22,14 +22,14 @@ class ParticipanteControlador
 {
 
     /**
-     * @var ParticipanteRepositorioDoctrine
+     * @var ParticipanteRepositorio
      */
     protected $repositorioParticipantes;
 
     /**
-     * @param ParticipanteRepositorioDoctrine $repositorioParticipantes
+     * @param ParticipanteRepositorio $repositorioParticipantes
      */
-    function __construct(ParticipanteRepositorioDoctrine $repositorioParticipantes)
+    function __construct(ParticipanteRepositorio $repositorioParticipantes)
     {
         $this->repositorioParticipantes = $repositorioParticipantes;
     }
