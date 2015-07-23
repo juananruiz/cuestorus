@@ -57,7 +57,19 @@ class PreguntaControlador
      */
     public function crearAccion(Application $app)
     {
-        return $app['twig']->render('pregunta/pregunta_crear.html.twig');
+        //TODO: Todavía no se donde colocar las clases de preguntas
+        $clases_preguntas = array(
+            array("discriminador" => "texto",
+                "etiqueta" => "Tipo texto"
+            ),
+            array("discriminador" => "opcion",
+                "etiqueta" => "Tipo opción"
+            ),
+            array("discriminador" => "gradiente",
+                "etiqueta" => "Tipo gradiente")
+        );
+
+        return $app['twig']->render('pregunta/pregunta_crear.html.twig', array("clases_preguntas" => $clases_preguntas));
     }
 
     /**

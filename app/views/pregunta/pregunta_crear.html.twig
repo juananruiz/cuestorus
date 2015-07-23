@@ -1,0 +1,28 @@
+{% extends "layout.html.twig" %}
+{% set title = 'Nueva pregunta' %}
+
+{% block content %}
+    <div id="main" role="main" class="container">
+
+    <h1>{{ title }}</h1>
+
+    <form action="/pregunta/grabar" method="post" class="form">
+        <label for="enunciado">Enunciado de la pregunta</label>
+        <input type="text" name="enunciado"
+               {% if pregunta is defined %}value="{{ pregunta.enunciado }}"{% endif %}>
+
+        <label for="orden">Orden</label>
+        <input type="text" name="orden"
+               {% if pregunta is defined %}value="{{ pregunta.orden }}"{% endif %}>
+
+        <label for="clase_pregunta">Tipo de pregunta</label>
+        <select name="clase_pregunta">
+            <option value="">Seleccione un tipo</option>
+            {% for clase_pregunta in clases_preguntas %}
+                <option value="clase_pregunta.discriminador">{{ clase_pregunta.etiqueta }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Grabar pregunta">
+    </form>
+
+{% endblock %}
