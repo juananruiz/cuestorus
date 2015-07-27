@@ -3,15 +3,13 @@
 {% set title = 'Datos del participante' %}
 
 {% block content %}
-    <div class="container">
-        <h2>{{ title }}</h2>
-        <a href="/participante/editar/{{ participante.id }}">Editar</a>
-        <a href="/participante/borrar/{{ participante.id }}">Borrar</a>
-        <a href="/participantes">Listar todos</a>
-        <ul>
-            <li>Id: {{ participante.id }}</li>
-            <li>Nombre: {{ participante.nombre }}</li>
-            <li>Apellidos: {{ participante.apellidos }}</li>
-        </ul>
-    </div>
+    <h2>{{ title }}</h2>
+    <a href="/participante/editar/{{ participante.id }}">Editar</a> ·
+    <a href="/participante/borrar/{{ participante.id }}">Borrar</a> ·
+    <a href="/participantes">Listar todos</a>
+    <ul>
+        <li>Id: {{ participante.id }}</li>
+        <li>Nombre: {{ participante.nombre }}</li>
+        <li>Apellidos: {{ participante.apellidos }}</li>
+    </ul>
 {% endblock %}

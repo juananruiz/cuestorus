@@ -25,42 +25,42 @@ $app->get('/', function () use ($app) {
 // Llamando a un método dentro de una clase
 // Silex pasa automáticamente $app, $request y el $id
 
-$app->get('/encuestas/{limite}/{desplazamiento}', 'US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador::listarAccion')
+$app->get('/encuestas/{limite}/{desplazamiento}', 'controller.encuesta:listarAccion')
+    ->value('limite', '10')
+    ->value('desplazamiento', '0')
     ->bind('encuestas');
-
-$app->get('/encuesta/{id}', 'US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador::mostrarAccion');
+$app->get('/encuesta/{id}', 'controller.encuesta:mostrarAccion')
+    ->bind("'encuesta_mostrar'");
 
 $app->get('/participantes/{limite}/{desplazamiento}', 'controller.participante:listarAccion')
     ->value('limite', '10')
     ->value('desplazamiento', '0')
     ->bind('participantes');
-
-$app->get('/participante/crear', 'controller.participante:crearAccion');
-
-$app->post('/participante/grabar', 'controller.participante:grabarAccion');
-
-$app->get('/participante/{id}', 'controller.participante:mostrarAccion');
-
-$app->get('/participante/editar/{id}', 'controller.participante:editarAccion');
-
-$app->get('/participante/borrar/{id}', 'controller.participante:borrarAccion');
+$app->get('/participante/crear', 'controller.participante:crearAccion')
+    ->bind("participante_crear");
+$app->get('/participante/editar/{id}', 'controller.participante:editarAccion')
+    ->bind("participante_editar");
+$app->post('/participante/grabar', 'controller.participante:grabarAccion')
+    ->bind("participante_grabar");
+$app->get('/participante/borrar/{id}', 'controller.participante:borrarAccion')
+    ->bind("participante_borrar");
+$app->get('/participante/{id}', 'controller.participante:mostrarAccion')
+    ->bind('participante_mostrar');
 
 $app->get('/preguntas/{limite}/{desplazamiento}', 'controller.pregunta:listarAccion')
     ->value('limite', '10')
     ->value('desplazamiento', '0')
     ->bind('preguntas');
-
 $app->get('/pregunta/crear', 'controller.pregunta:crearAccion')
     ->bind('pregunta_crear');
-
-
-$app->post('/pregunta/grabar', 'controller.pregunta:grabarAccion');
-
-$app->get('/pregunta/{id}', 'controller.pregunta:mostrarAccion');
-
-$app->get('/pregunta/editar/{id}', 'controller.pregunta:editarAccion');
-
-$app->get('/pregunta/borrar/{id}', 'controller.pregunta:borrarAccion');
+$app->get('/pregunta/editar/{id}', 'controller.pregunta:editarAccion')
+    ->bind("pregunta_editar");
+$app->post('/pregunta/grabar', 'controller.pregunta:grabarAccion')
+    ->bind("pregunta_grabar");
+$app->get('/pregunta/borrar/{id}', 'controller.pregunta:borrarAccion')
+    ->bind("pregunta_borrar");
+$app->get('/pregunta/{id}', 'controller.pregunta:mostrarAccion')
+    ->bind("pregunta_mostrar");
 
 
 // PRUEBAS Y EJEMPLOS //

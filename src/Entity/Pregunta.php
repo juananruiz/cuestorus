@@ -7,20 +7,24 @@
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
 
+
 /**
- * @Entity @Table(name="ENCUESTA_preguntas")
+ * @Entity
+ * @Table(name="ENCUESTA_preguntas")
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="discriminador", type="string")
  * @DiscriminatorMap({
- *                  "pregunta_texto" = "PreguntaTexto",
- *                  "pregunta_opcion" = "PreguntaOpcion",
- *                  "pregunta_gradiente" = "PreguntaGradiente"
+ *                  "texto" = "PreguntaTexto",
+ *                  "opcion" = "PreguntaOpcion",
+ *                  "gradiente" = "PreguntaGradiente"
  *                  })
  */
 abstract class Pregunta
 {
     /**
-     * @Id @Column(type="integer") @GeneratedValue 
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
      * @var int
      */
     protected $id;
@@ -54,54 +58,84 @@ abstract class Pregunta
      */
     protected $fecha_baja;
 
-    public function __construct($datosPregunta)
+    /**
+     * @param $propiedades
+     */
+    public function __construct($propiedades)
     {
-        foreach ($datosPregunta as $campo => $valor) {
-            $this->$campo = $valor;
+        foreach ($propiedades as $propiedad => $valor) {
+            $this->$propiedad = $valor;
         }
         $this->fecha_alta = date('Y-m-d H:i:s');
     }
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param $enunciado
+     */
     public function setEnunciado($enunciado)
     {
         $this->enunciado = $enunciado;
     }
 
+    /**
+     * @return string
+     */
     public function getEnunciado()
     {
         return $this->enunciado;
     }
 
+    /**
+     * @param $orden
+     */
     public function setOrden($orden)
     {
         $this->orden = $orden;
     }
 
+    /**
+     * @return int
+     */
     public function getOrden()
     {
         return $this->orden;
     }
 
+    /**
+     * @param \DateTime $fecha_alta
+     */
     public function setFechaAlta(\DateTime $fecha_alta)
     {
         $this->fecha_alta = $fecha_alta;
     }
 
+    /**
+     * @return bool|\DateTime|string
+     */
     public function getFechaAlta()
     {
         return $this->fecha_alta;
     }
 
+    /**
+     * @param \DateTime $fecha_baja
+     */
     public function setFechaBaja(\DateTime $fecha_baja)
     {
         $this->fecha_baja = $fecha_baja;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getFechaBaja()
     {
         return $this->fecha_baja;

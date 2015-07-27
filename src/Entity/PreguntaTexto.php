@@ -7,6 +7,7 @@
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
 
+
 /**
  * @Entity
  * @Table(name="ENCUESTA_preguntas_texto")

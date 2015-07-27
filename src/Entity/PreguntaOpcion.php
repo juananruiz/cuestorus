@@ -16,25 +16,33 @@ use Doctrine\Common\Collections\ArrayCollection;
 class PreguntaOpcion extends Pregunta
 {
     /**
-     * OneToMany(targetEntity="Opcion", mappedBy="pregunta")
+     * @OneToMany(targetEntity="Opcion", mappedBy="pregunta")
      */
     private $opciones;
 
     /**
-     * Column(type="integer")
+     * @Column(type="integer")
      * @var int
      */
-    private $max_selecciones;
+    private $max_opciones_permitidas;
 
-
-    function __construct($grupo_pregunta, $orden, $enunciado, $max_selecciones)
+    /**
+     * @return int
+     */
+    public function getMaxOpcionesPermitidas()
     {
-        parent::__construct($grupo_pregunta, $orden, $enunciado);
-        $this->max_selecciones = $max_selecciones;
+        return $this->max_opciones_permitidas;
     }
 
+    /**
+     * @param int $max_opciones_permitidas
+     */
+    public function setMaxOpcionesPermitidas($max_opciones_permitidas)
+    {
+        $this->max_opciones_permitidas = $max_opciones_permitidas;
+    }
 
-    public function agregaOpcion(Opcion $opcion)
+    public function agregarOpcion(Opcion $opcion)
     {
         $this->opciones[] = $opcion;
     }

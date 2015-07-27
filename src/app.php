@@ -17,6 +17,7 @@ use US\RRHH\Girhus\Encuesta\Repository\EdicionRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\EncuestaRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\EvaluacionRepositorio;
 use US\RRHH\Girhus\Encuesta\Repository\ParticipanteRepositorio;
+use US\RRHH\Girhus\Encuesta\Controller\EncuestaControlador;
 use US\RRHH\Girhus\Encuesta\Controller\InformeControlador;
 use US\RRHH\Girhus\Encuesta\Controller\ParticipanteControlador;
 use US\RRHH\Girhus\Encuesta\Controller\PreguntaControlador;
@@ -41,7 +42,7 @@ $app["orm.em.options"] = array(
     )
 );
 
-// Registra los repositorios.
+// Registra los repositorios como servicios
 $app['repository.respuesta'] = function ($app) {
     return new RespuestaRepositorio($app['orm.em'], $app['orm.em']->getClassMetadata('US\RRHH\Girhus\Encuesta\Entity\Respuesta'));
 };
@@ -67,7 +68,11 @@ $app['repository.participante'] = function ($app) {
     return new ParticipanteRepositorio($app['orm.em'], $app['orm.em']->getClassMetadata('US\RRHH\Girhus\Encuesta\Entity\Participante'));
 };
 
-// Registra controladores como servicios
+
+// Registra los controladores como servicios
+$app['controller.encuesta'] = function ($app) {
+    return new EncuestaControlador($app['repository.encuesta']);
+};
 $app['controller.informe'] = function ($app) {
     return new InformeControlador($app['repository.evaluacion']);
 };

@@ -11,6 +11,7 @@ namespace US\RRHH\Girhus\Encuesta\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use US\RRHH\Girhus\Encuesta\Repository\PreguntaRepositorio;
+use US\RRHH\Girhus\Encuesta\Entity\PreguntaFactory;
 
 
 /**
@@ -58,7 +59,7 @@ class PreguntaControlador
     public function crearAccion(Application $app)
     {
         //TODO: Todavía no se donde colocar las clases de preguntas
-        $clases_preguntas = array(
+        $tipos = array(
             array("discriminador" => "texto",
                 "etiqueta" => "Tipo texto"
             ),
@@ -69,7 +70,7 @@ class PreguntaControlador
                 "etiqueta" => "Tipo gradiente")
         );
 
-        return $app['twig']->render('pregunta/pregunta_crear.html.twig', array("clases_preguntas" => $clases_preguntas));
+        return $app['twig']->render('pregunta/pregunta_crear.html.twig', array('tipos' => $tipos));
     }
 
     /**
@@ -99,12 +100,15 @@ class PreguntaControlador
      */
     public function grabarAccion(Request $request, Application $app)
     {
-        $tipoPregunta = $request->get('tipo_pregunta');
-        $parametros = array(
+        $tipo = $request->get('tipo');
+        $propiedades = array(
             'enunciado' => $request->get('enunciado'),
             'id_grupo' => $request->get('id_grupo'),
-            'orden' => $request->get('orden'),
+            'orden' => $request->get('orden')
         );
-        $pregunta = new $tipoPregunta($parametros);
+        $pregunta = PreguntaFactory::crear($tipo, $propiedades);
+        $this->repositorioPreguntas->guardar($pregunta);
+        $redirect = $app['url_generator']->generate('preguntas');
+        return $app->redirect($redirect);
     }
 }

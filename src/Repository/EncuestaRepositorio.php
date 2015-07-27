@@ -12,8 +12,6 @@ use Doctrine\ORM\EntityRepository;
 
 class EncuestaRepositorio extends EntityRepository
 {
-
-
     /**
      * Devuelve un objeto Encuesta
      *
@@ -26,26 +24,21 @@ class EncuestaRepositorio extends EntityRepository
     }
 
     /**
-     * Devuelve una colección de entidades
+     * Devuelve una colección de objetos Encuesta
      *
+     * @param array $criterio
+     *  Condiciones que han de cumplir los registros devueltos
+     * @param array $ordenarPor
+     *   Opcional, campo y dirección par ordenar:  $campo => $dirección
      * @param integer $limite
      *   Número de entidades a devolver.
      * @param integer $desplazamiento
      *   Número de entidades que hay que saltarse desde el principio (paginación)
-     * @param array $ordenarPor
-     *   Opcional, campo y dirección par ordenar:  $campo => $dirección.
      *
      * @return array Colección de objetos de tipo encuesta
      */
-    public function listar($limite = 10, $desplazamiento = 0, $ordenarPor = array())
+    public function listar($criterio, $ordenarPor, $limite = 10, $desplazamiento = 0)
     {
-        $criterio = array();
-        return $this->findBy($criterio, $ordenarPor, $limite, $desplazamiento);
-    }
-
-    public function listarActivas($limite = 5, $desplazamiento = 0, $ordenarPor = array())
-    {
-        $criterio = array();
         return $this->findBy($criterio, $ordenarPor, $limite, $desplazamiento);
     }
 }

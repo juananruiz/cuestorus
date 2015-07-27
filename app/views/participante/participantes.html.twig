@@ -3,17 +3,15 @@
 {% set title = 'Lista de participantes' %}
 
 {% block content %}
-    <div class="container">
-        <h2>{{ title }}</h2>
-        <a href="/participante/crear">Nuevo</a>
-        <ul>
-            {% for participante in participantes %}
-                <li>
-                    <a href="participante/{{ participante.id }}">{{ participante.id }}
-                        - {{ participante.nombre|e }} {{ participante.apellidos|e }}</a>
-                    - <a href="participante/editar/{{ participante.id }}">Editar</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+    <h2>{{ title }}</h2>
+    <a href="{{ path('participante_crear') }}">Nuevo</a>
+    <ul>
+        {% for participante in participantes %}
+            <li>
+                <a href="{{ path('participante_mostrar', {'id': participante.id}) }}">{{ participante.id }}
+                    - {{ participante.nombre|e }} {{ participante.apellidos|e }}</a>
+                - <a href="{{ path('participante_editar', {'id': participante.id}) }}">Editar</a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

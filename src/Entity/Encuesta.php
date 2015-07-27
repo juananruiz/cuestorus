@@ -10,60 +10,72 @@
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
 
-use Doctrine\ORM\Mapping AS ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="ENCUESTA_encuestas")
- * @US\RRHH\Girhus\Encuesta\Entity\Annotations\Foobarable
+ * @Entity
+ * @Table(name="ENCUESTA_encuestas")
  */
 class Encuesta
 {
-    /** @ORM\Id @Column(type="integer") @@ORM\GeneratedValue * */
+    /**
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue *
+     */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @Column(type="string")
      * @var string
      */
     private $nombre;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @Column(type="boolean")
      * @var boolean
      */
     private $es_anonima;
 
     /**
-     * @ORM\Column(type="text")
+     * @Column(type="text")
      * @var string
      */
     private $texto_inicial;
 
     /**
-     * @ORM\Column(type="text")
+     * @Column(type="text")
      * @var string
      */
     private $texto_final;
 
+
     /**
-     *
+     * @return mixed
      */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function getNombre()
     {
         return $this->nombre;
     }
 
+    /**
+     * @param $es_anonima
+     */
     public function setEsAnonima($es_anonima)
     {
         $this->es_anonima = $es_anonima;
     }
 
+    /**
+     * @return bool
+     */
     public function getEsAnonima()
     {
         return $this->es_anonima;

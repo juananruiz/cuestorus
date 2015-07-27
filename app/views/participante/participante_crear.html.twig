@@ -1,16 +1,16 @@
 {% extends "layout.html.twig" %}
+{% set active = 'participantes' %}
 {% set title = 'Nuevo participante' %}
 
 {% block content %}
-    <div id="main" role="main" class="container">
+    <h2>{{ title }}</h2>
 
-    <h1>{{ title }}</h1>
+    <form action="{{ path('participante_grabar') }}" method="post" class="form">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" name="apellidos">
 
-    <form action="/participante/grabar" method="post" class="form">
-        <input type="text" name="nombre" {% if participante is defined %}value="{{ participante.nombre }}"{% endif %}>
-        <input type="text" name="apellidos"
-               {% if participante is defined %}value="{{ participante.apellidos }}"{% endif %}>
         <input type="submit" value="Grabar participante">
     </form>
-
 {% endblock %}

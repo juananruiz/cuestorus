@@ -16,7 +16,10 @@ namespace US\RRHH\Girhus\Encuesta\Entity;
  */
 class Participante
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
+    /** @Id
+     * @Column(type="integer")
+     * @GeneratedValue *
+     */
     protected $id;
 
     /**

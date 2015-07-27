@@ -3,17 +3,17 @@
 {% set title = 'Lista de preguntas' %}
 
 {% block content %}
-    <div class="container">
-        <h2>{{ title }}</h2>
-        <a href="/pregunta/crear">Nueva</a>
-        <ul>
-            {% for pregunta in preguntas %}
-                <li>
-                    <a href="pregunta/{{ pregunta.id }}">{{ pregunta.id }}
-                        - {{ pregunta.enunciado|e }}</a>
-                    - <a href="pregunta/editar/{{ pregunta.id }}">Editar</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+
+    <h2>{{ title }}</h2>
+    <a href="{{ path('pregunta_crear') }}">Nueva</a>
+    <ul>
+        {% for pregunta in preguntas %}
+            <li>
+                <a href="pregunta/{{ pregunta.id }}">{{ pregunta.id }}
+                    - {{ pregunta.enunciado|e }}</a>
+                - <a href="pregunta/editar/{{ pregunta.id }}">Editar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}
