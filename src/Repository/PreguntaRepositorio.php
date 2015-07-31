@@ -26,7 +26,7 @@ class PreguntaRepositorio extends EntityRepository
      *      Desplazamiento para paginación
      * @return array Colección de preguntas
      */
-    public function listar($criterio, $ordenarPor, $limite = 10, $desplazamiento = 0)
+    public function listar($criterio, $ordenarPor, $limite, $desplazamiento)
     {
         return $this->findBy($criterio, $ordenarPor, $limite, $desplazamiento);
     }
@@ -57,5 +57,17 @@ class PreguntaRepositorio extends EntityRepository
     {
         $this->getEntityManager()->remove($pregunta);
         $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Cuenta el número de preguntas existente.
+     *
+     * @return integer Número total de preguntas.
+     */
+    public function contar()
+    {
+        $dql = 'SELECT COUNT(p.id) FROM US\RRHH\Girhus\Encuesta\Entity\Pregunta p';
+        $query = $this->getEntityManager()->createQuery($dql);
+        return $query->getSingleScalarResult();
     }
 }

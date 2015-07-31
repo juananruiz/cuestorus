@@ -66,7 +66,7 @@ abstract class Pregunta
         foreach ($propiedades as $propiedad => $valor) {
             $this->$propiedad = $valor;
         }
-        $this->fecha_alta = date('Y-m-d H:i:s');
+        $this->fecha_alta = new \DateTime();
     }
 
     /**

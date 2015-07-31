@@ -5,15 +5,34 @@
 {% block content %}
 
     <h2>{{ title }}</h2>
-    <a href="{{ path('pregunta_crear') }}">Nueva</a>
-    <ul>
+    <a type="button" class="btn btn-primary" href="{{ path('pregunta_crear') }}">
+        <i class="fa fa-plus-circle"></i> Nueva pregunta
+    </a>
+    <hr>
+    <table class="table">
+        <thead>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Enunciado</th>
+        <th>Fecha alta</th>
+        <th>Fecha baja</th>
+        <th></th>
+        </thead>
+
+        <tbody>
         {% for pregunta in preguntas %}
-            <li>
-                <a href="pregunta/{{ pregunta.id }}">{{ pregunta.id }}
-                    - {{ pregunta.enunciado|e }}</a>
-                - <a href="pregunta/editar/{{ pregunta.id }}">Editar</a>
-            </li>
+            <tr>
+                <td><a href="pregunta/{{ pregunta.id }}">{{ pregunta.id }}</a></td>
+                <td></td>
+                <td>{{ pregunta.enunciado|e }}</td>
+                <td>{{ pregunta.fecha_alta }}</td>
+                <td>{{ pregunta.enunciado|e }}</td>
+                <td><a href="pregunta/editar/{{ pregunta.id }}">Editar</a></td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+
+    {% include "paginacion.html.twig" %}
 
 {% endblock %}

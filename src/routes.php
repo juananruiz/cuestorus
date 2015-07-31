@@ -47,9 +47,11 @@ $app->get('/participante/borrar/{id}', 'controller.participante:borrarAccion')
 $app->get('/participante/{id}', 'controller.participante:mostrarAccion')
     ->bind('participante_mostrar');
 
-$app->get('/preguntas/{limite}/{desplazamiento}', 'controller.pregunta:listarAccion')
+$app->get('/preguntas/{paginaActual}', 'controller.pregunta:listarAccion')
+    ->value('paginaActual', '1')
     ->value('limite', '10')
-    ->value('desplazamiento', '0')
+    ->assert('paginaActual', '\d+')
+    ->assert('limite', '\d+')
     ->bind('preguntas');
 $app->get('/pregunta/crear', 'controller.pregunta:crearAccion')
     ->bind('pregunta_crear');

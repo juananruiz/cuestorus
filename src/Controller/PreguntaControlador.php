@@ -9,7 +9,9 @@
 namespace US\RRHH\Girhus\Encuesta\Controller;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use US\RRHH\Girhus\Encuesta\Repository\PreguntaRepositorio;
 use US\RRHH\Girhus\Encuesta\Entity\PreguntaFactory;
 
@@ -39,16 +41,31 @@ class PreguntaControlador
     /**
      * Devuelve un listado de preguntas
      * @param Application $app
+     * @param int $paginaActual
      * @param int $limite
-     * @param int $desplazamiento
-     * @return mixed
+     * @return Response
      */
-    public function listarAccion(Application $app, $limite, $desplazamiento)
+    public function listarAccion(Application $app, $paginaActual, $limite)
     {
+        // Paginación
+        $total = $this->repositorioPreguntas->contar();
+        $numPaginas = ceil($total / $limite);
+        if ($paginaActual < 1) {
+            $paginaActual = 1;
+        } else if ($paginaActual > $numPaginas) {
+            $paginaActual = $numPaginas;
+        }
+        $desplazamiento = ($paginaActual - 1) * $limite;
         $criterio = array();
         $ordenarPor = array();
         $listaPreguntas = $this->repositorioPreguntas->listar($criterio, $ordenarPor, $limite, $desplazamiento);
-        return $app['twig']->render('pregunta/preguntas.html.twig', array("preguntas" => $listaPreguntas));
+        $parametros = array(
+            'preguntas' => $listaPreguntas,
+            'numPaginas' => $numPaginas,
+            'paginaActual' => $paginaActual,
+            'url' => $app['url_generator']->generate('preguntas'),
+        );
+        return $app['twig']->render('pregunta/preguntas.html.twig', $parametros);
     }
 
     /**
@@ -58,7 +75,7 @@ class PreguntaControlador
      */
     public function crearAccion(Application $app)
     {
-        //TODO: Todavía no se donde colocar las clases de preguntas
+        //TODO: No se si este es el mejor sitio para declarar esto
         $tipos = array(
             array("discriminador" => "texto",
                 "etiqueta" => "Tipo texto"
@@ -76,7 +93,7 @@ class PreguntaControlador
     /**
      * @param Request $request
      * @param Application $app
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
      */
     public function mostrarAccion(Request $request, Application $app)
     {
@@ -86,7 +103,7 @@ class PreguntaControlador
     /**
      * @param Request $request
      * @param Application $app
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
      */
     public function editarAccion(Request $request, Application $app)
     {
@@ -96,7 +113,7 @@ class PreguntaControlador
     /**
      * @param Request $request
      * @param Application $app
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function grabarAccion(Request $request, Application $app)
     {
@@ -107,6 +124,7 @@ class PreguntaControlador
             'orden' => $request->get('orden')
         );
         $pregunta = PreguntaFactory::crear($tipo, $propiedades);
+
         $this->repositorioPreguntas->guardar($pregunta);
         $redirect = $app['url_generator']->generate('preguntas');
         return $app->redirect($redirect);

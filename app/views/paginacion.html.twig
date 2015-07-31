@@ -1,0 +1,17 @@
+{% if numPaginas > 1 %}
+    <nav>
+        <ul class="pagination">
+            <li {% if paginaActual == 1 %}class="disabled"{% endif %}>
+                <a href="{{ url }}/{{ paginaActual - 1 }}" aria-label="Previa">&laquo;</a>
+            </li>
+            {% for pagina in 1..numPaginas %}
+                <li {% if paginaActual == pagina %}class="active"{% endif %}>
+                    <a href="{{ url }}/{{ pagina }}">{{ pagina }}</a>
+                </li>
+            {% endfor %}
+            <li {% if paginaActual == numPaginas %}class="disabled"{% endif %}>
+                <a href="{{ url }}/{{ paginaActual + 1 }}" aria-label="Siguiente">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
+{% endif %}
