@@ -1,0 +1,16 @@
+{% extends "layout.html.twig" %}
+{% set active = 'preguntas' %}
+{% set title = 'Editar pregunta' %}
+
+{% block content %}
+
+    <h2>{{ title }}</h2>
+
+    <form action="/pregunta/grabar" method="post" class="form">
+        <input type="hidden" name="id" value="{{ pregunta.id }}">
+        <input type="text" name="enunciado" value="{{ pregunta.enunciado }}">
+        <input type="text" name="orden" value="{{ pregunta.orden }}">
+        <input type="submit" value="Guardar cambios">
+    </form>
+
+{% endblock %}

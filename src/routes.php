@@ -67,7 +67,7 @@ $app->get('/pregunta/{id}', 'controller.pregunta:mostrarAccion')
 
 // PRUEBAS Y EJEMPLOS //
 
-$app->get('/request', function () use ($app) {
+$app->get('/prueba', function () use ($app) {
     return print_r($app['orm.ems']);
 });
 

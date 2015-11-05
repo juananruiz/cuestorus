@@ -45,7 +45,7 @@ class EncuestaControlador {
         $desplazamiento = $request->attributes->get('desplazamiento');
         $limite = $request->attributes->get('limite');
         $encuestas = $this->repositorioEncuestas->listar($criterio, $ordenarPor, $limite, $desplazamiento);
-        return $app['twig']->render('encuestas.html.twig', array("encuestas" => $encuestas));
+        return $app['twig']->render('encuesta/encuestas.html.twig', array("encuestas" => $encuestas));
     }
 
     /**
@@ -60,6 +60,6 @@ class EncuestaControlador {
             $app->abort(404, 'Identificador incorrecto.');
         }
         $encuesta = $this->repositorioEncuestas->cargar($id);
-        return $app['twig']->render('encuesta.html.twig', array("encuesta" => $encuesta));
+        return $app['twig']->render('encuesta/encuesta.html.twig', array("encuesta" => $encuesta));
     }
 }

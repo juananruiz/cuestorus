@@ -1,0 +1,43 @@
+{% extends "layout.html.twig" %}
+{% set active = 'preguntas' %}
+{% set title = 'Datos de la pregunta' %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <a href="/pregunta/editar/{{ pregunta.id }}">Editar</a> ·
+    <a href="/pregunta/borrar/{{ pregunta.id }}">Borrar</a> ·
+    <a href="/preguntas">Listar todas</a>
+    <ul>
+        <li>Id: {{ pregunta.id }}</li>
+        <li>Enunciado: {{ pregunta.enunciado|e }}</li>
+        <li>Orden: {{ pregunta.orden }}</li>
+        <li>Tipo: {{ pregunta.tipo }}</li>
+        {% if pregunta.tipo == 1 %}
+            <li>Máximo opciones permitidas: {{ pregunta.maxOpcionesPermitidas }}</li>
+        {% endif %}
+        {% if pregunta.tipo == 2 %}
+            <li>Valor mínimo: {{ pregunta.valorMinimo }}</li>
+            <li>Valor máximo: {{ pregunta.valorMaximo }}</li>
+        {% endif %}
+    </ul>
+
+    <h2>Vista previa</h2>
+    <form class="form">
+        <div class="form-group">
+            <label for="respuesta">{{ pregunta.orden }} - {{ pregunta.enunciado }}</label>
+            {% if pregunta.tipo == 1 %}
+                <textarea name="respuesta"></textarea>
+            {% endif %}
+            {% if pregunta.tipo == 2 %}
+                {% for valor in pregunta.valorMinimo..pregunta.valorMaximo %}
+                    <input type="radio" class="form-control" name="respuesta" value="{{ valor }}">{{ valor }} &nbsp;
+                {% endfor %}
+            {% endif %}
+            {% if pregunta.tipo == 3 %}
+                {% for opciones in opcion %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </form>
+
+{% endblock %}

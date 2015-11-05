@@ -86,7 +86,7 @@ $app['controller.pregunta'] = function ($app) {
 };
 
 $app['twig.path'] = array(__DIR__.'/../app/views');
-$app['twig.options'] = array('cache' => __DIR__.'/../app/cache/twig');
+$app['twig.options'] = array('cache' => __DIR__ . '/../var/cache/twig');
 
 // Opciones para Twig
 $app['twig'] = $app->extend('twig', function ($twig, $app) {

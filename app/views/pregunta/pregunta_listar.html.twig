@@ -1,0 +1,48 @@
+{% extends "layout.html.twig" %}
+{% set active = 'preguntas' %}
+{% set title = 'Lista de preguntas' %}
+
+{% block content %}
+
+    <h2>
+        {{ title }}
+        <a type="button" class="btn btn-primary pull-right" href="{{ path('pregunta_crear') }}">
+            <i class="fa fa-plus-circle"></i> Nueva pregunta
+        </a>
+    </h2>
+    <hr>
+    <table class="table">
+        <thead>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Enunciado</th>
+        <th>Orden</th>
+        <th>Fecha alta</th>
+        <th>Fecha baja</th>
+        <th></th>
+        </thead>
+
+        <tbody>
+        {% for pregunta in preguntas %}
+            <tr>
+                <td><a href="{{ path('pregunta_mostrar', {'id': pregunta.id}) }}">{{ pregunta.id }}</a></td>
+                <td></td>
+                <td>{{ pregunta.enunciado|e }}</td>
+                <td>{{ pregunta.orden }}</td>
+                <td>{{ pregunta.fechaAlta|date('d/m/Y') }}</td>
+                <td>{% if pregunta.fechaBaja is not empty %}
+                        {{ pregunta.fechaBaja|date('d/m/Y') }}
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('pregunta_mostrar', {'id': pregunta.id}) }}">Mostrar</a> |
+                    <a href="{{ path('pregunta_editar', {'id': pregunta.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% include "paginacion.html.twig" %}
+
+{% endblock %}

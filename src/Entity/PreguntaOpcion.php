@@ -29,6 +29,14 @@ class PreguntaOpcion extends Pregunta
     /**
      * @return int
      */
+    public function getTipo()
+    {
+        return parent::TIPO_OPCION;
+    }
+
+    /**
+     * @return int
+     */
     public function getMaxOpcionesPermitidas()
     {
         return $this->max_opciones_permitidas;

@@ -29,6 +29,14 @@ class PreguntaGradiente extends Pregunta
     /**
      * @return int
      */
+    public function getTipo()
+    {
+        return parent::TIPO_GRADIENTE;
+    }
+
+    /**
+     * @return int
+     */
     public function getValorMinimo()
     {
         return $this->valor_minimo;

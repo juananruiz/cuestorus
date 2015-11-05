@@ -12,6 +12,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use US\RRHH\Girhus\Encuesta\Entity\Pregunta;
 use US\RRHH\Girhus\Encuesta\Repository\PreguntaRepositorio;
 use US\RRHH\Girhus\Encuesta\Entity\PreguntaFactory;
 
@@ -56,8 +57,9 @@ class PreguntaControlador
             $paginaActual = $numPaginas;
         }
         $desplazamiento = ($paginaActual - 1) * $limite;
+
         $criterio = array();
-        $ordenarPor = array();
+        $ordenarPor = array('id' => 'ASC');
         $listaPreguntas = $this->repositorioPreguntas->listar($criterio, $ordenarPor, $limite, $desplazamiento);
         $parametros = array(
             'preguntas' => $listaPreguntas,
@@ -65,7 +67,7 @@ class PreguntaControlador
             'paginaActual' => $paginaActual,
             'url' => $app['url_generator']->generate('preguntas'),
         );
-        return $app['twig']->render('pregunta/preguntas.html.twig', $parametros);
+        return $app['twig']->render('pregunta/pregunta_listar.html.twig', $parametros);
     }
 
     /**
@@ -91,23 +93,25 @@ class PreguntaControlador
     }
 
     /**
-     * @param Request $request
      * @param Application $app
+     * @param integer $id
      * @return Response
      */
-    public function mostrarAccion(Request $request, Application $app)
+    public function mostrarAccion(Application $app, $id)
     {
-
+        $pregunta = $this->repositorioPreguntas->find($id);
+        return $app['twig']->render('pregunta/pregunta_mostrar.html.twig', array("pregunta" => $pregunta));
     }
 
     /**
-     * @param Request $request
      * @param Application $app
+     * @param integer $id
      * @return Response
      */
-    public function editarAccion(Request $request, Application $app)
+    public function editarAccion(Application $app, $id)
     {
-
+        $pregunta = $this->repositorioPreguntas->find($id);
+        return $app['twig']->render('pregunta/pregunta_editar.html.twig', array("pregunta" => $pregunta));
     }
 
     /**
@@ -126,6 +130,21 @@ class PreguntaControlador
         $pregunta = PreguntaFactory::crear($tipo, $propiedades);
 
         $this->repositorioPreguntas->guardar($pregunta);
+        $redirect = $app['url_generator']->generate('preguntas');
+        return $app->redirect($redirect);
+    }
+
+    /**
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function borrarAccion(Request $request, Application $app)
+    {
+        $id = $request->get('id');
+        /** @var Pregunta $pregunta */
+        $pregunta = $this->repositorioPreguntas->cargar($id);
+        $this->repositorioPreguntas->borrar($pregunta);
         $redirect = $app['url_generator']->generate('preguntas');
         return $app->redirect($redirect);
     }

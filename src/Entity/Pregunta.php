@@ -21,6 +21,11 @@ namespace US\RRHH\Girhus\Encuesta\Entity;
  */
 abstract class Pregunta
 {
+
+    const TIPO_TEXTO = 0;
+    const TIPO_OPCION  = 1;
+    const TIPO_GRADIENTE = 2;
+
     /**
      * @Id
      * @Column(type="integer")
@@ -68,6 +73,8 @@ abstract class Pregunta
         }
         $this->fecha_alta = new \DateTime();
     }
+
+    abstract public function getTipo();
 
     /**
      * @return int

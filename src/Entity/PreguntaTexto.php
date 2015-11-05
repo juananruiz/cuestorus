@@ -15,6 +15,13 @@ namespace US\RRHH\Girhus\Encuesta\Entity;
 class PreguntaTexto extends Pregunta
 {
 
+    /**
+     * @return int
+     */
+    public function getTipo()
+    {
+        return parent::TIPO_TEXTO;
+    }
 }
 
 

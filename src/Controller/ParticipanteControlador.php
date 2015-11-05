@@ -10,7 +10,9 @@
 namespace US\RRHH\Girhus\Encuesta\Controller;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use US\RRHH\Girhus\Encuesta\Entity\Participante;
 use US\RRHH\Girhus\Encuesta\Repository\ParticipanteRepositorio;
 
@@ -39,31 +41,31 @@ class ParticipanteControlador
      * @param Application $app
      * @param $limite
      * @param $desplazamiento
-     * @return array
+     * @return Response
      */
     public function listarAccion(Application $app, $limite, $desplazamiento)
     {
         $criterio = array();
         $ordenarPor = array();
         $listaParticipantes = $this->repositorioParticipantes->listar($criterio, $ordenarPor, $limite, $desplazamiento);
-        return $app['twig']->render('participante/participantes.html.twig', array("participantes" => $listaParticipantes));
+        return $app['twig']->render('participante/participante_listar.html.twig', array("participantes" => $listaParticipantes));
     }
 
     /**
      * @param Application $app
      * @param $id Identificador del participante
+     * @return Response
      */
     public function mostrarAccion(Application $app, $id)
     {
         $participante = $this->repositorioParticipantes->find($id);
-        return $app['twig']->render('participante/participante.html.twig', array("participante" => $participante));
-
+        return $app['twig']->render('participante/participante_mostrar.html.twig', array("participante" => $participante));
     }
 
     /**
      * @param Request $request
      * @param Application $app
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function grabarAccion(Request $request, Application $app)
     {
@@ -87,7 +89,7 @@ class ParticipanteControlador
 
     /**
      * @param Application $app
-     * @return mixed
+     * @return Response
      */
     public function crearAccion(Application $app)
     {
@@ -97,7 +99,7 @@ class ParticipanteControlador
     /**
      * @param Application $app
      * @param $id Identificador del participante
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
      */
     public function editarAccion(Application $app, $id)
     {
@@ -108,7 +110,7 @@ class ParticipanteControlador
     /**
      * @param Request $request
      * @param Application $app
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function borrarAccion(Request $request, Application $app)
     {
