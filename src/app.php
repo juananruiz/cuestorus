@@ -85,7 +85,7 @@ $app['controller.pregunta'] = function ($app) {
     return new PreguntaControlador($app['repository.pregunta']);
 };
 
-$app['twig.path'] = array(__DIR__.'/../app/views');
+$app['twig.path'] = array(__DIR__ . '/../views');
 $app['twig.options'] = array('cache' => __DIR__ . '/../var/cache/twig');
 
 // Opciones para Twig

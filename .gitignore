@@ -6,8 +6,8 @@ web/bundles/*
 var/
 
 # Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
+config/parameters.ini
+config/parameters.yml
 .htaccess
 
 # PHP Storm (Juanan)

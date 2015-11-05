@@ -10,40 +10,41 @@
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity
- * @Table(name="ENCUESTA_encuestas")
+ * @ORM\Entity
+ * @ORM\Table(name="ENCUESTA_encuestas")
  */
 class Encuesta
 {
     /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue *
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue *
      */
     private $id;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     private $nombre;
 
     /**
-     * @Column(type="boolean")
+     * @ORM\Column(type="boolean")
      * @var boolean
      */
     private $es_anonima;
 
     /**
-     * @Column(type="text")
+     * @ORM\Column(type="text")
      * @var string
      */
     private $texto_inicial;
 
     /**
-     * @Column(type="text")
+     * @ORM\Column(type="text")
      * @var string
      */
     private $texto_final;

@@ -7,13 +7,14 @@
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity
- * @Table(name="ENCUESTA_preguntas")
- * @InheritanceType("JOINED")
- * @DiscriminatorColumn(name="discriminador", type="string")
- * @DiscriminatorMap({
+ * @ORM\Entity
+ * @ORM\Table(name="ENCUESTA_preguntas")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discriminador", type="string")
+ * @ORM\DiscriminatorMap({
  *                  "texto" = "PreguntaTexto",
  *                  "opcion" = "PreguntaOpcion",
  *                  "gradiente" = "PreguntaGradiente"
@@ -27,44 +28,44 @@ abstract class Pregunta
     const TIPO_GRADIENTE = 2;
 
     /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      * @var int
      */
     protected $id;
 
     /**
-     * @ManyToOne (targetEntity="GrupoPregunta", inversedBy="preguntas")
+     * @ORM\ManyToOne (targetEntity="GrupoPregunta", inversedBy="preguntas")
      */
     protected $grupo_pregunta;
 
     /**
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      * @var int
      */
     protected $orden;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     protected $enunciado;
 
-    /** 
-     * @Column(type="datetime")
+    /**
+     * @ORM\Column(type="datetime")
      * @var \DateTime
      */
     protected $fecha_alta;
 
-    /** 
-     * @Column(type="datetime")
+    /**
+     * @ORM\Column(type="datetime")
      * @var \DateTime
      */
     protected $fecha_baja;
 
     /**
-     * @param $propiedades
+     * @param array $propiedades
      */
     public function __construct($propiedades)
     {

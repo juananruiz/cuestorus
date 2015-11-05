@@ -10,42 +10,38 @@
 
 namespace US\RRHH\Girhus\Encuesta\Entity;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity
- * @Table(name="FORPAS_ediciones")
+ * @ORM\Entity
+ * @ORM\Table(name="FORPAS_ediciones")
  */
 class Edicion
 {
-    /** @Id @Column(type="integer")
-     * @GeneratedValue
+    /** @ORM\Id @Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $codigo;
 
     /**
-     * @Column(type="DateTime")
+     * @ORM\Column(type="DateTime")
      * @var /DateTime
      */
     private $fecha_inicio;
 
     /**
-     * @Column(type="DateTime")
+     * @ORM\Column(type="DateTime")
      * @var /DateTime
      */
     private $fecha_fin;
 
     /**
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      * @var int
      */
     private $dias_cierre_encuesta;
